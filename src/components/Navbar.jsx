@@ -1,21 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Shield, Search, Users, Heart } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom'
 
-const Navbar = () => {
+const links = [
+    { to: '/', label: '🏥 Insurance Info' },
+    { to: '/search', label: '🔍 Search Guide' },
+    { to: '/events', label: '📅 Community' },
+    { to: '/donate', label: '💜 Donate' },
+]
+
+export default function Navbar() {
+    const { pathname } = useLocation()
     return (
-        <nav className="navbar">
-            <div className="nav-brand">
-                <Link to="/"><Shield /> CoverWise</Link>
-            </div>
-            <ul className="nav-links">
-                <li><Link to="/insurance-info"><Shield size={18} /> Insurance Info</Link></li>
-                <li><Link to="/search-guide"><Search size={18} /> Search Guide</Link></li>
-                <li><Link to="/community"><Users size={18} /> Community</Link></li>
-                <li><Link to="/donations"><Heart size={18} /> Donations</Link></li>
-            </ul>
+        <nav className="border-b border-slate-800 bg-slate-900 px-6 py-4 flex gap-6 items-center">
+            <span className="font-bold text-blue-400 text-xl mr-4">CoverWise</span>
+            {links.map(l => (
+                <Link
+                    key={l.to}
+                    to={l.to}
+                    className={`text-sm font-medium transition-colors ${pathname === l.to ? 'text-blue-400' : 'text-slate-400 hover:text-white'
+                        }`}
+                >
+                    {l.label}
+                </Link>
+            ))}
         </nav>
-    );
-};
-
-export default Navbar;
+    )
+}

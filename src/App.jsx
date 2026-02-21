@@ -1,32 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import InsuranceInfo from './pages/InsuranceInfo';
-import SearchGuide from './pages/SearchGuide';
-import CommunityEvents from './pages/CommunityEvents';
-import Donations from './pages/Donations';
-import { InsuranceProvider } from './context/InsuranceContext';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { InsuranceProvider } from './context/InsuranceContext'
+import Navbar from './components/Navbar'
+import InsuranceInfo from './pages/InsuranceInfo'
+import SearchGuide from './pages/SearchGuide'
+import CommunityEvents from './pages/CommunityEvents'
+import Donations from './pages/Donations'
 
-function App() {
+export default function App() {
   return (
     <InsuranceProvider>
-      <Router>
-        <div className="app">
+      <BrowserRouter>
+        <div className="min-h-screen bg-slate-950 text-white">
           <Navbar />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<InsuranceInfo />} />
-              <Route path="/insurance-info" element={<InsuranceInfo />} />
-              <Route path="/search-guide" element={<SearchGuide />} />
-              <Route path="/community" element={<CommunityEvents />} />
-              <Route path="/donations" element={<Donations />} />
-            </Routes>
-          </main>
+          <Routes>
+            <Route path="/" element={<InsuranceInfo />} />
+            <Route path="/search" element={<SearchGuide />} />
+            <Route path="/events" element={<CommunityEvents />} />
+            <Route path="/donate" element={<Donations />} />
+          </Routes>
         </div>
-      </Router>
+      </BrowserRouter>
     </InsuranceProvider>
-  );
+  )
 }
-
-export default App;

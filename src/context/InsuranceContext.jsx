@@ -1,15 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react'
 
-const InsuranceContext = createContext();
+const InsuranceContext = createContext()
 
-export const InsuranceProvider = ({ children }) => {
-    const [insuranceData, setInsuranceData] = useState(null);
-
+export function InsuranceProvider({ children }) {
+    const [insuranceData, setInsuranceData] = useState(null)
     return (
         <InsuranceContext.Provider value={{ insuranceData, setInsuranceData }}>
             {children}
         </InsuranceContext.Provider>
-    );
-};
+    )
+}
 
-export const useInsurance = () => useContext(InsuranceContext);
+export const useInsurance = () => useContext(InsuranceContext)
