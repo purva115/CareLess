@@ -79,8 +79,6 @@ export async function donateSol({ solAmount }) {
   );
 
   return signature;
-<<<<<<< HEAD
+
+
 }
-=======
-}
->>>>>>> ff74e85 (Added PostVisit page, Gemini models, Solana integration and updated API config)
