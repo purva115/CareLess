@@ -85,3 +85,97 @@ npm install
 
 # 2) run dev
 npm run dev
+
+App should be available at:
+
+http://localhost:5173
+
+🔐 Environment Variables
+
+Create a .env file in the project root (do not commit this):
+
+# ElevenLabs
+VITE_ELEVENLABS_API_KEY=your_key_here
+VITE_ELEVENLABS_VOICE_ID=your_voice_id_here
+
+# Backend API (if applicable)
+VITE_API_BASE_URL=http://localhost:8000
+
+# Solana (if applicable)
+VITE_SOLANA_NETWORK=devnet
+
+✅ Add .env to .gitignore.
+
+🧪 Demo Script (3–4 minutes)
+
+Pre Visit
+
+Pick a condition + enter deductible/coinsurance/copay
+
+Click Verify & Analyze
+
+Show estimate + “why”
+
+Play the voice summary (ElevenLabs)
+
+Post Visit
+
+Upload an EOB/bill PDF
+
+Show extracted CPT lines + plain-English explanations
+
+Show “You pay” + tooltips
+
+Show appeal checklist + call script
+
+Community
+
+Connect Phantom wallet
+
+Make a small devnet donation
+
+Show on-chain feed update
+
+Scroll to free medical camps/events
+
+📁 Suggested Repo Structure
+careless/
+  src/
+    pages/
+      PreVisit/
+      PostVisit/
+      Community/
+    components/
+    assets/
+    utils/
+  public/
+  backend/                # if you have an API server
+  README.md
+  .env.example
+🧠 Notes on Data & Accuracy
+
+CareLess provides assistive estimates and explanations, not medical or legal advice.
+
+Costs depend on plan details, provider contracts, and claim adjudication.
+
+Always confirm billing/coverage with your provider/insurer.
+
+🛣️ Roadmap (After Hackathon)
+
+In-network vs out-of-network handling
+
+Better CPT/remark-code knowledge base
+
+Persist user history (Atlas)
+
+Automated appeal letter generation + attachments pack
+
+Verified event sources for free camps (public health feeds)
+
+🙌 Team
+
+Built at a hackathon with ❤️ for students navigating healthcare complexity.
+
+If you use this project, please star the repo and share feedback!
+
+::contentReference[oaicite:0]{index=0}
