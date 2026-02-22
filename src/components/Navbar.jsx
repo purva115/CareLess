@@ -5,9 +5,9 @@ export default function Navbar() {
     const links = [
         { to: '/', label: '🏥 Insurance Info' },
         { to: '/search', label: '🔍 Search Guide' },
-        { to: '/events', label: '📅 Community' },
-        { to: '/donate', label: '💜 Donate' },
+        { to: '/community', label: '📅 Community' },
     ]
+
 
     return (
         <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md px-8 py-4 flex justify-between items-center">

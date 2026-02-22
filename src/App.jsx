@@ -3,8 +3,7 @@ import { InsuranceProvider } from './context/InsuranceContext'
 import Navbar from './components/Navbar'
 import InsuranceInfo from './pages/InsuranceInfo'
 import SearchGuide from './pages/SearchGuide'
-import CommunityEvents from './pages/CommunityEvents'
-import Donations from './pages/Donations'
+import Community from './pages/Community'
 
 export default function App() {
   return (
@@ -15,8 +14,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<InsuranceInfo />} />
             <Route path="/search" element={<SearchGuide />} />
-            <Route path="/events" element={<CommunityEvents />} />
-            <Route path="/donate" element={<Donations />} />
+            <Route path="/community" element={<Community />} />
           </Routes>
         </div>
       </BrowserRouter>

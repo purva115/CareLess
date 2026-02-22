@@ -1,5 +1,8 @@
 import { useState, useRef } from 'react'
-import { Calendar, MapPin, Users, Phone, Share2, Trash2, Plus, X, Search, Activity } from 'lucide-react'
+import {
+    Calendar, MapPin, Users, Phone, Share2, Trash2, Plus, X, Search, Activity,
+    Heart, ShieldCheck, Zap, Globe
+} from 'lucide-react'
 
 const CATEGORIES = [
     { id: 'all', label: '✦ All Events', color: 'blue' },
@@ -174,7 +177,8 @@ function EventCard({ event, onDelete, isOwner }) {
     )
 }
 
-export default function CommunityEvents() {
+export default function Community() {
+    // Event State
     const [events, setEvents] = useState(() => {
         const saved = localStorage.getItem('coverwise_events')
         return saved ? [...SEED_EVENTS, ...JSON.parse(saved)] : SEED_EVENTS
@@ -270,12 +274,12 @@ export default function CommunityEvents() {
                         <span className="text-emerald-600 text-[10px] font-bold tracking-widest uppercase">Community Board</span>
                     </div>
                     <h1 className="syne text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
-                        Free Health<br />
-                        <span className="text-emerald-600">Events Near You</span>
+                        Free Campaign<br />
+                        <span className="text-emerald-600">Drives Near You</span>
                     </h1>
                     <p className="text-slate-500 mt-6 text-lg leading-relaxed">
-                        Discover free health camps, drives, and checkups posted by your community.
-                        Making healthcare accessible, one event at a time.
+                        Discover free health camps, wellness drives, and screenings posted by your community.
+                        Making healthcare accessible for every student and neighbor.
                     </p>
 
                     <button
@@ -285,7 +289,7 @@ export default function CommunityEvents() {
                             : 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-200/50'
                             }`}
                     >
-                        {showForm ? <><X className="w-5 h-5" /> Cancel</> : <><Plus className="w-5 h-5" /> Post an Event</>}
+                        {showForm ? <><X className="w-5 h-5" /> Cancel</> : <><Plus className="w-5 h-5" /> Post a Campaign</>}
                     </button>
                 </div>
 
@@ -293,7 +297,7 @@ export default function CommunityEvents() {
                 {/* Post Form */}
                 {showForm && (
                     <div className="bg-white rounded-[2.5rem] border border-slate-100 p-10 mb-12 shadow-2xl shadow-slate-200/50">
-                        <h2 className="syne text-3xl font-extrabold text-slate-900 mb-8">Post a Free Health Event</h2>
+                        <h2 className="syne text-3xl font-extrabold text-slate-900 mb-8">Post a Free Health Drive</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="md:col-span-2">
@@ -458,7 +462,6 @@ export default function CommunityEvents() {
                         />
                     </div>
 
-
                     <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 shrink-0">
                         {CATEGORIES.map(cat => (
                             <button
@@ -497,7 +500,7 @@ export default function CommunityEvents() {
 
                 {/* Past Events */}
                 {past.length > 0 && (
-                    <div>
+                    <div className="mb-16">
                         <div className="flex items-center gap-3 mb-8">
                             <h2 className="syne text-2xl font-extrabold text-slate-400">Past Events</h2>
                             <span className="bg-slate-100 text-slate-400 text-[10px] font-bold px-3 py-1 rounded-full">{past.length}</span>
@@ -517,7 +520,7 @@ export default function CommunityEvents() {
 
                 {/* Empty state */}
                 {filtered.length === 0 && (
-                    <div className="text-center py-24 bg-white rounded-[3rem] border border-slate-100 shadow-sm">
+                    <div className="text-center py-24 bg-white rounded-[3rem] border border-slate-100 shadow-sm mb-16">
                         <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">🏥</div>
                         <h3 className="syne text-2xl font-extrabold text-slate-900 mb-2">No events found</h3>
                         <p className="text-slate-500 text-sm max-w-xs mx-auto mb-8 leading-relaxed">Try adjusting your filters or be the hero who posts the first event in this category!</p>
@@ -529,6 +532,103 @@ export default function CommunityEvents() {
                         </button>
                     </div>
                 )}
+
+                {/* --- DONATION SECTION --- */}
+                <hr className="border-slate-100 mb-24" />
+
+                <div className="max-w-4xl mx-auto">
+                    {/* Donation Header */}
+                    <div className="mb-16 text-center">
+                        <div className="inline-flex items-center gap-2 bg-rose-50 border border-rose-100 rounded-full px-4 py-1.5 mb-6">
+                            <span className="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                            <span className="text-rose-600 text-[10px] font-bold tracking-widest uppercase">Student Emergency Fund</span>
+                        </div>
+                        <h2 className="syne text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                            Student Health <br />
+                            <span className="text-rose-600">Emergency Fund</span>
+                        </h2>
+                        <p className="text-slate-500 mt-6 text-lg leading-relaxed">
+                            Support college students facing unexpected medical crises. Your contributions
+                            provide immediate aid for treatments, prescriptions, and diagnostics.
+                        </p>
+                    </div>
+
+                    {/* Donation Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        {[
+                            { amount: "$15", label: "Diagnostic Aid", icon: "🧪", desc: "Covers essential lab tests for one student" },
+                            { amount: "$45", label: "Recovery Hero", icon: "🩹", desc: "Supports prescription and follow-up costs", popular: true },
+                            { amount: "$150", label: "Surgical Support", icon: "🏥", desc: "Contributes to major emergency procedures" }
+                        ].map((tier, i) => (
+                            <div key={i} className={`relative bg-white rounded-[2.5rem] p-8 border ${tier.popular ? 'border-rose-200 ring-4 ring-rose-50' : 'border-slate-100'} shadow-xl shadow-slate-200/40 transition-all hover:scale-[1.03] duration-300`}>
+                                {tier.popular && (
+                                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                                        Critical Need
+                                    </span>
+                                )}
+                                <div className="text-4xl mb-4">{tier.icon}</div>
+                                <h3 className="syne text-xl font-bold text-slate-900 mb-1">{tier.label}</h3>
+                                <p className="text-slate-400 text-xs mb-6 font-medium">{tier.desc}</p>
+                                <div className="text-4xl font-extrabold text-slate-900 mb-8">{tier.amount}</div>
+                                <button className={`w-full py-4 rounded-2xl font-bold text-sm transition-all ${tier.popular ? 'bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-200' : 'bg-slate-50 text-slate-600 hover:bg-slate-900 hover:text-white'}`}>
+                                    Support Student
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Feature Grid */}
+                    <div className="bg-white rounded-[3rem] p-10 border border-slate-100 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div className="flex gap-6">
+                            <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center shrink-0">
+                                <ShieldCheck className="w-6 h-6 text-blue-500" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-2">Verified Emergencies</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed">Every request is vetted to ensure funds go directly to students in genuine medical need.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-6">
+                            <div className="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center shrink-0">
+                                <Heart className="w-6 h-6 text-rose-500" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-2">Student Focus</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed">Dedicated specifically to undergraduate and graduate students without adequate insurance.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-6">
+                            <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center shrink-0">
+                                <Zap className="w-6 h-6 text-emerald-500" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-2">Rapid Relief</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed">Funds are deployed quickly to cover urgent bills and prevent medical debt.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-6">
+                            <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center shrink-0">
+                                <Globe className="w-6 h-6 text-amber-500" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-2">College Network</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed">Partnering with university health centers to identify and support students at risk.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Crypto Placeholder */}
+                    <div className="mt-12 text-center">
+                        <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">We also accept crypto</p>
+                        <div className="inline-flex items-center gap-4 bg-slate-900 text-white px-6 py-3 rounded-2xl shadow-xl transition-all hover:scale-[1.02] cursor-pointer">
+                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold text-xs italic">S</div>
+                            <div className="text-left">
+                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Solana Address</p>
+                                <p className="text-xs font-mono">Bv9v...8qA2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
